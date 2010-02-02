@@ -2,7 +2,7 @@ module Jekyll
 
   class Site
     attr_accessor :config, :layouts, :posts, :pages, :static_files, :categories, :exclude,
-                  :source, :dest, :lsi, :pygments, :permalink_style, :tags, :collated
+                  :source, :dest, :lsi, :pygments, :permalink_style, :tags, :collated, :tags_list
 
     # Initialize the site
     #   +config+ is a Hash containing site configurations details
@@ -27,6 +27,7 @@ module Jekyll
       self.posts           = []
       self.pages           = []
       self.static_files    = []
+      self.tags_list        = []
       self.categories      = Hash.new { |hash, key| hash[key] = [] }
       self.tags            = Hash.new { |hash, key| hash[key] = [] }
       self.collated        = {}
@@ -143,6 +144,8 @@ module Jekyll
             self.posts << post
             post.categories.each { |c| self.categories[c] << post }
             post.tags.each { |c| self.tags[c] << post }
+            post.tags.each { |c| self.tags[c] << post }
+            post.tags.each { |c| self.tags_list << c unless self.tags_list.include?(c) }
           end
         end
       end
@@ -181,6 +184,7 @@ module Jekyll
 
       self.categories.values.map { |ps| ps.sort! { |a, b| b <=> a} }
       self.tags.values.map { |ps| ps.sort! { |a, b| b <=> a} }
+      self.tags_list.sort! 
     rescue Errno::ENOENT => e
       # ignore missing layout dir
     end
@@ -301,6 +305,7 @@ module Jekyll
           "posts"      => self.posts.sort { |a,b| b <=> a },
           "categories" => post_attr_hash('categories'),
           "collated_posts"  =>  self.collated,
+          "tags_list"   => self.tags_list,
           "tags"       => post_attr_hash('tags')})}
     end
 

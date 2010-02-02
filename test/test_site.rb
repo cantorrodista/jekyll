@@ -49,9 +49,11 @@ class TestSite < Test::Unit::TestCase
 
       posts = Dir[source_dir("**", "_posts", "*")]
       categories = %w(bar baz category foo z_category publish_test win).sort
-
+      tags = %w(Ruby food cooking pizza code).sort
       assert_equal posts.size - 1, @site.posts.size
       assert_equal categories, @site.categories.keys.sort
+      assert_equal 5, @site.tags_list.size
+      assert_equal tags, @site.tags_list
       assert_equal 4, @site.categories['foo'].size
     end
 
