@@ -2,6 +2,7 @@
 layout: default
 title: Testing a long post splitted with 'extended' property
 extended: ":EXTENDED:"
+tag: Ruby
 ---
 
 This is an introduction
