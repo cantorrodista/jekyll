@@ -52,9 +52,8 @@ h3. Post excerpt
 Based on a "Gaizka":http://github.com/gaizka patch that has been ported to the current jekyll version. With this you can generate a summary for each of your posts. You must define a variable in each post view, called 'extended' with the marker that you will use to differenciate between the summary and the content:
 
 
- title: New post
-
- extended: ':myseparatortag:'
+title: New post
+extended: ':myseparatortag:'
 
 
 And then simply, in the body of your post, put your marker. Now when you call {{post.content}} in an iterator for example, it would return your excerpt, that is from the beginning of the post until the marker.
