@@ -45,7 +45,7 @@ Based on the "Mikewest Jekyll Fork":http://github.com/mikewest/jekyll, i have ad
 
 h3. Tagging support
 
-Based also on the "Mikewest Jekyll Fork":http://github.com/mikewest/jekyll, it generates for each tag declarated in a post definition, a view based on test/source/_layouts/tag_index.html. In addition, now you can ask for {% site.tags_list%} that returns an array of all tags used in all posts of your blog, order by name. With this you can iterate and generate the typical tag list with link the each tag view.
+Based also on the "Mikewest Jekyll Fork":http://github.com/mikewest/jekyll, it generates for each tag declarated in a post definition, a view based on test/source/layouts/tag_index.html. In addition, now you can ask for {% site.tags_list%} that returns an array of all tags used in all posts of your blog, order by name. With this you can iterate and generate the typical tag list with link the each tag view.
 
 h3. Post excerpt
 
