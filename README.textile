@@ -36,6 +36,31 @@ h2. Developer Dependencies
 * RR: Mocking (Ruby)
 * RedGreen: Nicer test output (Ruby)
 
+h2. Changes in this fork
+
+h3. Archives support
+
+Based on the "Mikewest Jekyll Fork":http://github.com/mikewest/jekyll, i have adding this functionality to the last version of jekyll (0.5.7 at this moment). It generates a folder structure by years, months and days. The layouts used to render this views are test/source/_layouts/archive_monthly.html, _layouts/archive_yearly.html and _layouts/archive_daily.html. We can then have the following code in, for example, archive/index.html:
+	
+
+h3. Tagging support
+
+Based also on the "Mikewest Jekyll Fork":http://github.com/mikewest/jekyll, it generates for each tag declarated in a post definition, a view based on test/source/_layouts/tag_index.html. In addition, now you can ask for {% site.tags_list%} that returns an array of all tags used in all posts of your blog, order by name. With this you can iterate and generate the typical tag list with link the each tag view.
+
+h3. Post excerpt
+
+Based on a "Gaizka":http://github.com/gaizka patch that has been ported to the current jekyll version. With this you can generate a summary for each of your posts. You must define a variable in each post view, called 'extended' with the marker that you will use to differenciate between the summary and the content:
+
+
+ title: New post
+ extended: ':myseparatortag:'
+
+
+And then simply, in the body of your post, put your marker. Now when you call {{post.content}} in an iterator for example, it would return your excerpt, that is from the beginning of the post until the marker.
+
+
+You can understand better all the new funcionality reading the tests and features or taking a look to the code of "my jekyll blog":http://github.com/cantorrodista/my-jekyll-blog
+
 h2. License
 
 (The MIT License)
