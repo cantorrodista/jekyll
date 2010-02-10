@@ -29,7 +29,8 @@ module Jekyll
       input.split.length
     end
 
-    def array_to_sentence_string(array,connector='and')
+    def array_to_sentence_string(array)
+      connector='and'
       case array.length
       when 0
         ""
@@ -39,6 +40,25 @@ module Jekyll
         "#{array[0]} #{connector} #{array[1]}"
       else
         "#{array[0...-1].join(', ')}, #{connector} #{array[-1]}"
+      end
+    end
+
+    def tag_array_to_sentence_links(array)
+      base_path="/tags/"
+      connector='y'
+      case array.length
+      when 0
+        ""
+      when 1
+        "<a href='#{base_path}#{array[0].to_s}'>#{array[0].to_s}</a>"
+      when 2
+        "<a href='#{base_path}#{array[0].to_s}'>#{array[0].to_s}</a> #{connector} <a href='#{base_path}#{array[1].to_s}'>#{array[1].to_s}</a>"
+      else
+        str = ""
+        array[0...-1].each{|tag| str << "<a href='#{base_path}#{tag.to_s}'>#{tag.to_s}</a>, "}
+        str << connector
+        str <<  " <a href='#{base_path}#{array[-1].to_s}'>#{array[-1].to_s}</a>"
+        str
       end
     end
 
